@@ -1,10 +1,18 @@
 use anyhow::Result;
 
 mod d1;
+mod d2;
+mod d3;
+mod d4;
+mod d5;
 
 pub fn run(day: u8, input: String) -> Result<()> {
 	match day {
 		1 => d1::run(input),
+		2 => d2::run(input),
+		3 => d3::run(input),
+		4 => d4::run(input),
+		5 => d5::run(input),
 		_ => todo!(),
 	}
 }
