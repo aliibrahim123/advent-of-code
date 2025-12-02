@@ -35,8 +35,9 @@ pub fn run(input: String) -> Result<()> {
 			let pair = (chars[i], chars[i + 1]);
 			if let Some(ind) = pairs.get(&pair) {
 				cond1 |= *ind + 1 != i
+			} else {
+				pairs.insert(pair, i);
 			}
-			pairs.insert(pair, i);
 		}
 		let mut cond2 = false;
 		for i in 0..chars.len() - 2 {
