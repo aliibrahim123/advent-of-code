@@ -49,7 +49,6 @@ pub fn run(input: String) -> Result<()> {
 			nice_strings += 1;
 		}
 	}
-	// not working
 	println!("part2: {nice_strings}");
 	Ok(())
 }
