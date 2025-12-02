@@ -1,0 +1,6 @@
+[package]
+name = "advent-of-code"
+version = "0.0.1"
+description = "my solutions of advent of code"
+authors = ["you"]
+edition = "2024"

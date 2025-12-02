@@ -1,0 +1,1 @@
+collection of my advent of code solution written in rust 
