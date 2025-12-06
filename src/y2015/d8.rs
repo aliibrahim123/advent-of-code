@@ -1,8 +1,6 @@
 use anyhow::Result;
 use itertools::Itertools;
 
-use crate::utils::OptionExt;
-
 pub fn run(input: String) -> Result<()> {
 	let mut res = 0;
 	for line in input.lines() {
