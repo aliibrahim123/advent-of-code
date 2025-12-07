@@ -1,7 +1,5 @@
 use std::collections::HashMap;
 
-use anyhow::Result;
-
 use crate::utils::StrExt;
 
 enum Op {
@@ -46,7 +44,7 @@ fn solve<'a>(
 	res
 }
 
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut wires = HashMap::<&str, u16>::new();
 	let mut gates = HashMap::<&str, Gate>::new();
 
@@ -69,8 +67,9 @@ pub fn run(input: String) -> Result<()> {
 
 	let a = solve("a", &gates, &mut wires);
 	println!("part1: {}", a);
+
 	wires.clear();
 	wires.insert("b", a);
 	println!("part2: {}", solve("a", &gates, &mut wires));
-	Ok(())
+	Some(())
 }

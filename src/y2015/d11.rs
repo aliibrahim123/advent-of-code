@@ -1,4 +1,3 @@
-use anyhow::Result;
 use itertools::Itertools;
 
 type Password = [u8; 8];
@@ -34,9 +33,9 @@ fn next_valid(input: &mut Password) {
 	}
 }
 
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let input = input.trim();
-	let mut input = input.bytes().map(|x| x - b'a').collect_array::<8>().unwrap();
+	let mut input = input.bytes().map(|x| x - b'a').collect_array::<8>()?;
 
 	next_valid(&mut input);
 	println!("part1: {}", input.iter().map(|x| x + b'a').map(char::from).collect::<String>());
@@ -44,5 +43,5 @@ pub fn run(input: String) -> Result<()> {
 	add_one(&mut input);
 	next_valid(&mut input);
 	println!("part2: {}", input.iter().map(|x| x + b'a').map(char::from).collect::<String>());
-	Ok(())
+	Some(())
 }

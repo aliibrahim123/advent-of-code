@@ -1,9 +1,8 @@
 use std::collections::HashSet;
 
-use anyhow::Result;
 use itertools::Itertools;
 
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut visited_houses = HashSet::new();
 	let mut cur_house = (0, 0);
 	visited_houses.insert(cur_house);
@@ -42,5 +41,5 @@ pub fn run(input: String) -> Result<()> {
 		visited_houses.insert(cur_house_robo);
 	}
 	println!("part 2: {}", visited_houses.len());
-	Ok(())
+	Some(())
 }

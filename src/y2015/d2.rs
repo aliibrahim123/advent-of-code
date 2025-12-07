@@ -1,6 +1,4 @@
-use anyhow::Result;
-
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut paper = 0;
 	let mut ribbon = 0;
 	for line in input.lines() {
@@ -21,5 +19,5 @@ pub fn run(input: String) -> Result<()> {
 	}
 	println!("part 1: {paper}");
 	println!("part 2: {ribbon}");
-	Ok(())
+	Some(())
 }

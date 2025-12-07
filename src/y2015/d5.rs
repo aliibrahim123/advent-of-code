@@ -1,8 +1,6 @@
 use std::collections::HashMap;
 
-use anyhow::Result;
-
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut nice_strings = 0;
 	'mainloop: for str in input.lines() {
 		let mut vowels = 0;
@@ -50,5 +48,5 @@ pub fn run(input: String) -> Result<()> {
 		}
 	}
 	println!("part2: {nice_strings}");
-	Ok(())
+	Some(())
 }

@@ -1,7 +1,6 @@
-use anyhow::Result;
 use itertools::Itertools;
 
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut res = 0;
 	for line in input.lines() {
 		let line = line.trim();
@@ -15,7 +14,7 @@ pub fn run(input: String) -> Result<()> {
 		let mut enc_len = 0;
 		while let Some(char) = chars.next() {
 			if char == '\\' {
-				if chars.next().unwrap() == 'x' {
+				if chars.next()? == 'x' {
 					_ = chars.next_tuple::<(_, _)>()
 				}
 			}
@@ -43,5 +42,5 @@ pub fn run(input: String) -> Result<()> {
 		res += enc_len - src_len;
 	}
 	println!("part2: {}", res);
-	Ok(())
+	Some(())
 }

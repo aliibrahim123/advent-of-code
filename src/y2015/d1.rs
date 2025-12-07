@@ -1,6 +1,4 @@
-use anyhow::Result;
-
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut floor = 0;
 	for char in input.chars() {
 		floor += if char == '(' { 1 } else { -1 };
@@ -15,5 +13,5 @@ pub fn run(input: String) -> Result<()> {
 			break;
 		}
 	}
-	Ok(())
+	Some(())
 }

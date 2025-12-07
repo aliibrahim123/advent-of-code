@@ -1,6 +1,5 @@
 use std::mem;
 
-use anyhow::Result;
 use itertools::Itertools;
 
 fn do_round(nb: &mut Vec<u8>, buf: &mut Vec<u8>) {
@@ -14,7 +13,7 @@ fn do_round(nb: &mut Vec<u8>, buf: &mut Vec<u8>) {
 	mem::swap(nb, buf);
 }
 
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut nb = input.trim().bytes().collect::<Vec<_>>();
 	let mut buf = Vec::new();
 
@@ -27,5 +26,5 @@ pub fn run(input: String) -> Result<()> {
 		do_round(&mut nb, &mut buf);
 	}
 	println!("part2: {}", nb.len());
-	Ok(())
+	Some(())
 }

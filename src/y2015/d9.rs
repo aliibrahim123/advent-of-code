@@ -1,17 +1,16 @@
 use std::collections::{HashMap, HashSet};
 
-use anyhow::Result;
 use itertools::Itertools;
 
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut distances = HashMap::new();
 	let mut cities = HashSet::new();
 	for line in input.trim().lines() {
 		let line = line.trim();
 
-		let (from, rest) = line.split_once(" to ").unwrap();
-		let (to, dst) = rest.split_once(" = ").unwrap();
-		let dst: u64 = dst.parse().unwrap();
+		let (from, rest) = line.split_once(" to ")?;
+		let (to, dst) = rest.split_once(" = ")?;
+		let dst: u64 = dst.parse().ok()?;
 		distances.insert((from, to), dst);
 		distances.insert((to, from), dst);
 		cities.insert(from);
@@ -31,5 +30,5 @@ pub fn run(input: String) -> Result<()> {
 
 	println!("part1: {}", shortest_dst);
 	println!("part1: {}", longest_dst);
-	Ok(())
+	Some(())
 }

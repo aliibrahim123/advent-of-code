@@ -31,7 +31,7 @@ fn main() -> Result<()> {
 	};
 
 	match year {
-		15 => y2015::run(day, input)?,
+		15 => y2015::run(day, input).ok_or(anyhow::anyhow!("Unexpected None"))?,
 		_ => todo!(),
 	};
 

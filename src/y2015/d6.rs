@@ -1,16 +1,12 @@
 use std::cmp::max;
 
-use anyhow::Result;
-
-use crate::utils::OptionExt;
-
 enum Command {
 	Off,
 	On,
 	Toggle,
 }
 
-fn parse(inp: &str) -> Result<(Command, (usize, usize), (usize, usize))> {
+fn parse(inp: &str) -> Option<(Command, (usize, usize), (usize, usize))> {
 	let mut parts = inp.split(' ');
 	let command = match parts.next() {
 		Some("turn") => match parts.next() {
@@ -22,16 +18,16 @@ fn parse(inp: &str) -> Result<(Command, (usize, usize), (usize, usize))> {
 		_ => unreachable!(),
 	};
 
-	let (x1, y1) = parts.next().ok()?.split_once(',').ok()?;
-	let (x1, y1) = (usize::from_str_radix(x1, 10)?, usize::from_str_radix(y1, 10)?);
+	let (x1, y1) = parts.next()?.split_once(',')?;
+	let (x1, y1) = (usize::from_str_radix(x1, 10).ok()?, usize::from_str_radix(y1, 10).ok()?);
 	parts.next();
-	let (x2, y2) = parts.next().ok()?.split_once(',').ok()?;
-	let (x2, y2) = (usize::from_str_radix(x2, 10)?, usize::from_str_radix(y2, 10)?);
+	let (x2, y2) = parts.next()?.split_once(',')?;
+	let (x2, y2) = (usize::from_str_radix(x2, 10).ok()?, usize::from_str_radix(y2, 10).ok()?);
 
-	Ok((command, (x1, y1), (x2, y2)))
+	Some((command, (x1, y1), (x2, y2)))
 }
 
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut lights = [[false; 1000]; 1000];
 
 	for line in input.lines() {
@@ -68,5 +64,5 @@ pub fn run(input: String) -> Result<()> {
 	let lit: i32 = lights.iter().flatten().sum();
 	println!("part 2: {lit}");
 
-	Ok(())
+	Some(())
 }

@@ -1,4 +1,3 @@
-use anyhow::Result;
 use serde_json::Value;
 
 fn match_nb(char: char) -> bool {
@@ -19,15 +18,15 @@ fn count_in(value: &Value) -> i64 {
 	}
 }
 
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let mut sum = 0;
 
 	for nb in input.split(|c| !match_nb(c)).filter(|nb| !nb.is_empty()) {
-		sum += nb.parse::<i32>().unwrap();
+		sum += nb.parse::<i32>().ok()?;
 	}
 	println!("part1: {sum}");
 
-	let root = serde_json::from_str::<'_, Value>(&input)?;
+	let root = serde_json::from_str::<'_, Value>(&input).ok()?;
 	println!("part2: {}", count_in(&root));
-	Ok(())
+	Some(())
 }

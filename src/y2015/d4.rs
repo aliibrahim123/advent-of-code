@@ -1,6 +1,4 @@
-use anyhow::Result;
-
-pub fn run(input: String) -> Result<()> {
+pub fn run(input: String) -> Option<()> {
 	let input = input.trim();
 	let mut cur_nb = 0;
 	let mut first_part = 0;
@@ -20,5 +18,5 @@ pub fn run(input: String) -> Result<()> {
 	}
 	println!("part 1: {first_part}");
 	println!("part 2: {second_part}");
-	Ok(())
+	Some(())
 }
