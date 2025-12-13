@@ -1,4 +1,5 @@
 use anyhow::Result;
+use num_traits::Num;
 
 pub trait OptionExt<T> {
 	fn ok(self) -> Result<T>;
@@ -20,4 +21,8 @@ impl StrExt for str {
 	fn first_char(&self) -> char {
 		self.chars().next().unwrap()
 	}
+}
+
+pub fn div_ciel<T: Num + Copy>(a: T, b: T) -> T {
+	(a + b - T::one()) / b
 }
